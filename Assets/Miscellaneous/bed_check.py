@@ -24,7 +24,8 @@ def bed_check():
                 time.sleep(5)
                 frm.audio("heal_sound.wav", sound_effect = True)
                 frm.printslow("\nYou had a nice long nap.\n")
-                frm.printfast("\nYou feel much healthier now.\n")
+                # frm.printfast("\nYou feel much healthier now.\n")
+                frm.printfast("\nYou feel much better now.\n")
                 break
 
             elif "n" in nap_status:
