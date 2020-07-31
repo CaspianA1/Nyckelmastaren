@@ -2,28 +2,33 @@
 
 # credits: caspian ahlberg, adam, winograd, christopher ahlberg, and stack overflow
 
-import time
+import os, time, random
 from .reset_game import partial_reset
-from .formatting import Format
+from .formatting import Format  # periods before there
+from ..Audio.audio_control import play_audio
 
 frm = Format()
 
-f = lambda num=10: "\n" + "\t" * num
+message = ("{}With the wizard slayed, you reign as the rightful king of these lands.",
+"{}After nearly fifty years, the townspeople may finally return from hiding.",
+"{}They thank you for saving them, but most importantly, thank you,",
+"{}The player, for playing my game. I worked on it with a great team,",
+"{}and I hope to work on more games with many more. If you want to see",
+"{}any of my other projects, go to https://github.com/CaspianA1/ if you're curious.",
+"{}Credits:",
+"{}- Caspian Ahlberg (me)",
+"{}- Adam Winograd (an amazing teammate and artist)",
+"{}- Christopher Ahlberg (for making simple solutions to complex problems)",
+"{}- And Stack Overflow too, early on :)")
 
 def ending_screen():
-    msg1 = f"{f()}With the wizard slayed, you reign as the rightful king of these lands.\n"
-    msg2 = f"{f()}After nearly fifty years, the townspeople may finally return from hiding.\n"
-    msg3 = f"{f()}They thank you for saving them, but most importantly, thank you,\n"
-    msg4 = f"{f()}The player, for playing my game. I worked on it with a great team,\n"
-    msg5 = f"{f()}and I hope to work on more games with many more. If you want to see\n"
-    msg6 = f"{f()}any of my other projects, go to https://github.com/CaspianA1/ if you're curious.\n"
-    msg7 = f"{f()}Credits:\n{f()}-> Caspian Ahlberg (me){f()}-> Adam Winograd (an amazing teammate and artist){f()}-> Christopher Ahlberg (for making simple solutions to complex problems){f()}-> And Stack Overflow too, early on."
-
-    all_msgs = (msg1, msg2, msg3, msg4, msg5, msg6, msg7)
-
-    for msg in all_msgs:
-        frm.printfast(msg)
-    time.sleep(10)
+    time.sleep(1)
+    frm.clear_screen()
+    play_audio(f"8-Bit {random.choice((27, 28))}.wav")
+    spacing = "\t" * (os.get_terminal_size()[0] // 35)
+    for row in message:
+        frm.printfast("\n" + row.format(spacing) + "\n", override_speed = 0.1)
+    time.sleep(60)
 
 if __name__ == "__main__":
     ending_screen()

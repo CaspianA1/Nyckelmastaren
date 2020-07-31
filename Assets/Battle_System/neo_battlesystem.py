@@ -186,15 +186,18 @@ class BattleSystem:
                 self.subtract_enemy_health(hit_power_to_enemy)
                 show_graphic(currentenemy.name, "player strike")
 
-        if currentenemy.name == "wizard":
-            stop_audio()
-            rand_track = random.choice(("8-Bit 27.wav", "8-Bit 28.wav"))
-            self.frm.audio(rand_track)
-            partial_reset()
-            ending_screen()
-            os._exit(0)
+
 
         if self.check_enemy_death() is True:
+            if currentenemy.name == "wizard":
+                stop_audio()
+                self.frm.audio(random.choice(("8-Bit 27.wav", "8-Bit 28.wav")))
+                # BUG FIXING NEEDS TO BE DONE HERE
+                ending_screen()
+                os._exit(0)
+
+
+
             self.frm.printfast(f"\nYou slayed the {currentenemy.name}!")  # slaid
             time.sleep(0.5)
             show_graphic(currentenemy.name, "enemy death")

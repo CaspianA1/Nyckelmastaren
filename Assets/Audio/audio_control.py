@@ -3,7 +3,6 @@
 import os
 import time
 import simpleaudio as sa
-from threading import Thread
 from maps import Position
 
 pos_obj = Position()
@@ -114,10 +113,12 @@ pos_audio_binding = {
 
 
 def play_audio(track_name):
-	wave_dir = os.getcwd() + "/Assets/Audio/WAV_New/" + track_name
-	wave_obj = sa.WaveObject.from_wave_file(wave_dir)
-	play_obj = wave_obj.play()
-	return play_obj
+        # print("Starting to play audio")
+        wave_dir = os.getcwd() + "/Assets/Audio/WAV_New/" + track_name
+        wave_obj = sa.WaveObject.from_wave_file(wave_dir)
+        play_obj = wave_obj.play()
+        # print("Stopping audio")
+        return play_obj
 
 '''See below.'''
 '''There needs to be a timer. Here's why:'''
@@ -136,12 +137,16 @@ var_dir = os.getcwd() + "/Assets/Global_Vars/"
 def stop_audio():
     with open(f"{var_dir}audio_stop_check.txt", "w"):
         pass
+    sa.stop_all()
 
 def main_audio_loop():
 	global wrapped_sound_obj
 
 	while True:
 		if open(f"{var_dir}audio_stop_check.txt", "r").read() == "":
+			# print("Time to break")
+			sa.stop_all()
+			wrapped_sound_obj.track_name = None
 			break
 
 		time.sleep(1)

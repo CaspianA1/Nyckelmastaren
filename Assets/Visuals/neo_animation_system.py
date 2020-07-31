@@ -47,7 +47,7 @@ rusty_sword = AnimationType(prefix = "/Assets/Visuals/Animations/Rusty_sword", s
 gold_sword = AnimationType(prefix = "/Assets/Visuals/Animations/Gold_sword", style_postfixes = None, frame_num = 12, is_enemy = False)
 diamond_sword = AnimationType(prefix = "/Assets/Visuals/Animations/Diamond_sword", style_postfixes = None, frame_num = 12, is_enemy = False)
 plasma_sword = AnimationType(prefix = "/Assets/Visuals/Animations/Plasma_sword", style_postfixes = None, frame_num = 12, is_enemy = False)
-bucky_ball = AnimationType(prefix = "/Assets/Visuals/Animations/Bucky_ball", style_postfixes = None, frame_num = 12, is_enemy = False)
+bucky_ball = AnimationType(prefix = "/Assets/Visuals/Animations/Bucky_ball", style_postfixes = None, frame_num = 4, is_enemy = False)
 bronze_key =  AnimationType(prefix = "/Assets/Visuals/Animations/Bronze_key", style_postfixes = None, frame_num = 12, is_enemy = False)
 silver_key = AnimationType(prefix = "/Assets/Visuals/Animations/Silver_key", style_postfixes = None, frame_num = 12, is_enemy = False)
 gold_key = AnimationType(prefix = "/Assets/Visuals/Animations/Gold_key", style_postfixes = None, frame_num = 12, is_enemy = False)
@@ -77,11 +77,11 @@ single_frames = {  # "castle lead up": castle_lead_up,
 
 all_graphics = (enemy_animations, not_enemy_animations, single_frames)
 
-
+# not needed
 def get_screen_size():
     try:
         columns, rows = os.get_terminal_size(0)
-        avg_size = (columns + rows) / 2
+        avg_size = (columns + rows) // 2
         if avg_size in range(86):
             return 85
         elif avg_size in range(87, 151):
