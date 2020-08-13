@@ -72,6 +72,7 @@ pos_audio_binding = {
 	"hu": "8-Bit 10.wav",
 	"dr": "8-Bit 19.wav",
 	"m": "8-Bit 19.wav",
+        "mo": "8-Bit 19.wav",   # added after a possible repeat mistake (not sure?)
 	"w": "8-Bit 23.wav",
 
 	"r": "8-Bit 4.wav",
